@@ -15,6 +15,16 @@ namespace NerdDinner.Models
             get { return (GetRuleViolations().Count() == 0); }
         }
 
+        public bool IsHostedBy(string userName)
+        {
+            return HostedBy.Equals(userName, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public bool IsUserRegistered(string userName)
+        {
+            return RSVPs.Any(r => r.AttendeeName.Equals(userName, StringComparison.InvariantCultureIgnoreCase));
+        }
+
         public IEnumerable<RuleViolation> GetRuleViolations()
         {
 

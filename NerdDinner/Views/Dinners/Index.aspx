@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<NerdDinner.Models.Dinner>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<NerdDinner.Helpers.PaginatedList<NerdDinner.Models.Dinner>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Upcoming Dinner
@@ -18,12 +18,19 @@
                 <%= Html.Encode(dinner.EventDate.ToShortDateString()) %>
                 @
                 <%= Html.Encode(dinner.EventDate.ToShortTimeString()) %>
-           </li>
+          </li>
            
         <% } %>
     </ul>
     
-    <p><%= Html.ActionLink("Create a new dinners", "Create", "Dinners")%></p>
+    <p id="pagination">
+    <% if (Model.HasPreviousPage) { %>
+        <%= Html.RouteLink("<<<", "UpcomingDinners", new { page=(Model.PageIndex-1) }) %>
+    <% } %>
+    <% if (Model.HasNextPage) { %>
+        <%= Html.RouteLink(">>>", "UpcomingDinners", new { page = (Model.PageIndex + 1) })%>
+    <% } %>
+    </p>
 
 </asp:Content>
 

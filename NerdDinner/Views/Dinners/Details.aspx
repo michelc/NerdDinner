@@ -6,6 +6,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+<div id="dinnerDiv">
+
     <h2><%= Html.Encode(Model.Title) %></h2>
     <p>
         <strong>When:</strong>
@@ -27,9 +29,16 @@
         <%= Html.Encode(Model.HostedBy) %>
         (<%= Html.Encode(Model.ContactPhone) %>)
     </p>
-    <p>
-        <%=Html.ActionLink("Edit Dinner", "Edit", new { id=Model.DinnerID }) %> |
-        <%=Html.ActionLink("Delete Dinner", "Delete", new { id=Model.DinnerID }) %> |
-    </p>
+    
+    <% Html.RenderPartial("RSVPStatus"); %>
+    <% Html.RenderPartial("EditAndDeleteLinks"); %>
 
+</div>
+
+<div id="mapDiv">
+    <% Html.RenderPartial("Map"); %>
+</div>
+
+<div class="clear">&nbsp;</div>
+    
 </asp:Content>

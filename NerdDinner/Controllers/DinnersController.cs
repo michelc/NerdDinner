@@ -33,10 +33,15 @@ namespace NerdDinner.Controllers
         //
         // GET: /Dinners/
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var dinners = dinnerRepository.FindUpcomingDinners().ToList();
-            return View(dinners);
+            const int pageSize = 5;
+
+            var upcomingDinners = dinnerRepository.FindUpcomingDinners();
+            var paginatedDinners = new PaginatedList<Dinner>(upcomingDinners,
+                                                             page ?? 0,
+                                                             pageSize);
+            return View(paginatedDinners);
         }
 
         //
@@ -63,6 +68,11 @@ namespace NerdDinner.Controllers
         {
             Dinner dinner = dinnerRepository.GetDinner(id);
 
+            if (!dinner.IsHostedBy(User.Identity.Name))
+            {
+                return View("InvalidOwner", dinner);
+            }
+
             if (dinner == null)
             {
                 return View("NotFound");
@@ -80,6 +90,11 @@ namespace NerdDinner.Controllers
         public ActionResult Edit(int id, FormCollection formValues)
         {
             Dinner dinner = dinnerRepository.GetDinner(id);
+
+            if (!dinner.IsHostedBy(User.Identity.Name))
+            {
+                return View("InvalidOwner", dinner);
+            }
 
             try
             {
@@ -101,6 +116,7 @@ namespace NerdDinner.Controllers
         //
         // GET: /Dinners/Create
 
+        [Authorize]
         public ActionResult Create()
         {
             Dinner dinner = new Dinner()
@@ -113,14 +129,18 @@ namespace NerdDinner.Controllers
         //
         // POST: /Dinners/Create
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Post), Authorize]
         public ActionResult Create(Dinner dinner)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    dinner.HostedBy = "SomeUser";
+                    dinner.HostedBy = User.Identity.Name;
+
+                    RSVP rsvp = new RSVP();
+                    rsvp.AttendeeName = User.Identity.Name;
+                    dinner.RSVPs.Add(rsvp);
 
                     dinnerRepository.Add(dinner);
                     dinnerRepository.Save();
