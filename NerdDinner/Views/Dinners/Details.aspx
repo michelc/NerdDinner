@@ -1,13 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<NerdDinner.Models.Dinner>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Dinner : <%= Html.Encode(Model.Title) %>
+	Details
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Details</h2>
-
+    <h2><%= Html.Encode(Model.Title) %></h2>
     <p>
         <strong>When:</strong>
         <%= Model.EventDate.ToShortDateString() %>
@@ -28,8 +27,9 @@
         <%= Html.Encode(Model.HostedBy) %>
         (<%= Html.Encode(Model.ContactPhone) %>)
     </p>
-
-    <%=Html.ActionLink("Edit", "Edit", new { id=Model.DinnerID }) %> |
-    <%=Html.ActionLink("Back to List", "Index") %>
+    <p>
+        <%=Html.ActionLink("Edit Dinner", "Edit", new { id=Model.DinnerID }) %> |
+        <%=Html.ActionLink("Delete Dinner", "Delete", new { id=Model.DinnerID }) %> |
+    </p>
 
 </asp:Content>

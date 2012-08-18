@@ -2,23 +2,23 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="NerdDinner">
   <DataContextMoniker Name="/NerdDinnerDataContext" />
   <nestedChildShapes>
-    <classShape Id="cb925d79-22d2-4f51-8b34-fbf4bb3f4527" absoluteBounds="0.75, 1, 2, 2.3118462563554445">
+    <classShape Id="85a71b2e-d4f4-486d-b0a9-8d10ac93ac2d" absoluteBounds="0.75, 1, 2, 2.7324039713541666">
       <DataClassMoniker Name="/NerdDinnerDataContext/Dinner" />
       <nestedChildShapes>
-        <elementListCompartment Id="fc0c4938-a335-4438-9f6a-f7a26fc8cc59" absoluteBounds="0.765, 1.46, 1.9700000000000002, 1.7518462563554444" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="72780933-3407-4012-ac33-19e65d643761" absoluteBounds="0.765, 1.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7040a9da-27f0-4a0f-8584-670f37a979d8" absoluteBounds="3.5, 1.5, 2, 1.221727882921696">
+    <classShape Id="1f6262b0-77ab-4d1f-88c8-d8a8865178d9" absoluteBounds="3.5, 1.625, 2, 1.3862939453124998">
       <DataClassMoniker Name="/NerdDinnerDataContext/RSVP" />
       <nestedChildShapes>
-        <elementListCompartment Id="58bd1c1c-4388-476d-a98b-d1fa714b6fde" absoluteBounds="3.515, 1.96, 1.9700000000000002, 0.66172788292169571" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6d051de3-b70e-4203-9868-ab348ad51673" absoluteBounds="3.515, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.11086394146085); (3.5 : 2.11086394146085)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.31814697265625); (3.5 : 2.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NerdDinnerDataContext/Dinner/Dinner_RSVP" />
       <nodes>
-        <classShapeMoniker Id="cb925d79-22d2-4f51-8b34-fbf4bb3f4527" />
-        <classShapeMoniker Id="7040a9da-27f0-4a0f-8584-670f37a979d8" />
+        <classShapeMoniker Id="85a71b2e-d4f4-486d-b0a9-8d10ac93ac2d" />
+        <classShapeMoniker Id="1f6262b0-77ab-4d1f-88c8-d8a8865178d9" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

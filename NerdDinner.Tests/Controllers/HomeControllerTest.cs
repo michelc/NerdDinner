@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NerdDinner;
 using NerdDinner.Controllers;
 
-namespace NerdDinner.Tests.Tests.Controllers
+namespace NerdDinner.Tests.Controllers
 {
-    [TestFixture]
+    [TestClass]
     public class HomeControllerTest
     {
-        [Test]
+        [TestMethod]
         public void Index()
         {
             // Arrange
@@ -26,7 +26,7 @@ namespace NerdDinner.Tests.Tests.Controllers
             Assert.AreEqual("Welcome to ASP.NET MVC!", viewData["Message"]);
         }
 
-        [Test]
+        [TestMethod]
         public void About()
         {
             // Arrange

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web.Mvc;
 
 namespace NerdDinner.Models
 {
+    [Bind(Include = "Title,Description,EventDate,Address,Country,ContactPhone,Latitude,Longitude")]
     public partial class Dinner
     {
 
@@ -15,18 +17,25 @@ namespace NerdDinner.Models
 
         public IEnumerable<RuleViolation> GetRuleViolations()
         {
+
             if (String.IsNullOrEmpty(Title))
                 yield return new RuleViolation("Title required", "Title");
+
             if (String.IsNullOrEmpty(Description))
                 yield return new RuleViolation("Description required", "Description");
+
             if (String.IsNullOrEmpty(HostedBy))
                 yield return new RuleViolation("HostedBy required", "HostedBy");
+
             if (String.IsNullOrEmpty(Address))
                 yield return new RuleViolation("Address required", "Address");
+
             if (String.IsNullOrEmpty(Country))
                 yield return new RuleViolation("Country required", "Address");
+
             if (String.IsNullOrEmpty(ContactPhone))
                 yield return new RuleViolation("Phone# required", "ContactPhone");
+
             if (!PhoneValidator.IsValidNumber(ContactPhone, Country))
                 yield return new RuleViolation("Phone# does not match country", "ContactPhone");
             yield break;
@@ -39,6 +48,7 @@ namespace NerdDinner.Models
                 throw new ApplicationException("Rule violations prevent saving");
             }
         }
+
     }
 
     public class RuleViolation
@@ -63,7 +73,8 @@ namespace NerdDinner.Models
     public class PhoneValidator
     {
 
-        static IDictionary<string, Regex> countryRegex = new Dictionary<string, Regex>() {
+        static IDictionary<string, Regex> countryRegex = new Dictionary<string, Regex>()
+        {
             { "USA", new Regex("^[2-9]\\d{2}-\\d{3}-\\d{4}$")},
             { "UK", new Regex("(^1300\\d{6}$)|(^1800|1900|1902\\d{6}$)|(^0[2|3|7|8]{1}[0-9]{8}$)|(^13\\d{4}$)|(^04\\d{2,3}\\d{6}$)")},
             { "Netherlands", new Regex(" (^\\+[0-9]{2}|^\\+[0-9]{2}\\(0\\)|^\\(\\+[0-9]{2}\\)\\(0\\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\\-\\s]{10}$)")},
@@ -85,4 +96,5 @@ namespace NerdDinner.Models
             }
         }
     }
+
 }

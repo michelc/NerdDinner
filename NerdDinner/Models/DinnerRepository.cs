@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace NerdDinner.Models
 {
@@ -9,6 +10,7 @@ namespace NerdDinner.Models
 
         private NerdDinnerDataContext db = new NerdDinnerDataContext();
 
+        //
         // Query Methods
         public IQueryable<Dinner> FindAllDinners()
         {
@@ -28,7 +30,8 @@ namespace NerdDinner.Models
             return db.Dinners.SingleOrDefault(d => d.DinnerID == id);
         }
 
-        // Insert / Delete Methods
+        //
+        // Insert/Delete Methods
         public void Add(Dinner dinner)
         {
             db.Dinners.InsertOnSubmit(dinner);
@@ -40,11 +43,11 @@ namespace NerdDinner.Models
             db.Dinners.DeleteOnSubmit(dinner);
         }
 
+        //
         // Persistence
         public void Save()
         {
             db.SubmitChanges();
         }
-
     }
 }
