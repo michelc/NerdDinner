@@ -15,10 +15,8 @@
     
     <% using (Html.BeginForm()) { %>
         <input type="submit" value="Delete" />
+        &nbsp;
+        <%= Html.ActionLink("Cancel", "Details", new { id = Model.DinnerID }) %>
     <% } %>
-
-    <p>
-        <%=Html.ActionLink("Back to List", "Index") %>
-    </p>
 
 </asp:Content>

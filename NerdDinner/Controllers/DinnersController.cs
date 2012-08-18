@@ -9,6 +9,22 @@ using NerdDinner.Helpers;
 
 namespace NerdDinner.Controllers
 {
+    public class DinnerFormViewModel
+    {
+
+        // Properties
+        public Dinner Dinner { get; private set; }
+        public SelectList Countries { get; private set; }
+
+        // Constructor
+        public DinnerFormViewModel(Dinner dinner)
+        {
+
+            Dinner = dinner;
+            Countries = new SelectList(PhoneValidator.Countries, dinner.Country);
+        }
+    }
+
     public class DinnersController : Controller
     {
 
@@ -53,7 +69,7 @@ namespace NerdDinner.Controllers
             }
             else
             {
-                return View(dinner);
+                return View(new DinnerFormViewModel(dinner));
             }
         }
 
@@ -78,7 +94,7 @@ namespace NerdDinner.Controllers
             {
                 ModelState.AddRuleViolations(dinner.GetRuleViolations());
 
-                return View(dinner);
+                return View(new DinnerFormViewModel(dinner));
             }
         }
 
@@ -91,7 +107,7 @@ namespace NerdDinner.Controllers
             {
                 EventDate = DateTime.Now.AddDays(7)
             };
-            return View(dinner);
+            return View(new DinnerFormViewModel(dinner));
         }
 
         //
@@ -117,7 +133,7 @@ namespace NerdDinner.Controllers
                 }
             }
 
-            return View(dinner);
+            return View(new DinnerFormViewModel(dinner));
         }
 
         //
